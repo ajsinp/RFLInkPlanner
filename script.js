@@ -95,7 +95,7 @@ function wirePopup(t) {
       const freqEl = document.getElementById(`freq-${t.id}`);
       t.name = nameEl ? nameEl.value || t.name : t.name;
       t.freqGHz = freqEl ? parseFloat(freqEl.value) || t.freqGHz : t.freqGHz;
-      // Replace popup content and re-open (so handlers reattach)
+
       t.marker.setPopupContent(popupHtml(t));
       t.marker.openPopup();
       refreshUI();
@@ -257,7 +257,7 @@ async function onLinkClicked(id) {
   map.fitBounds(l.fresnelPoly.getBounds(), { padding: [40, 40] });
 }
 
--function dist(a, b) {
+function dist(a, b) {
   const R = 6371000;
   const d2r = (d) => (d * Math.PI) / 180;
   const dLat = d2r(b.lat - a.lat);
@@ -266,7 +266,7 @@ async function onLinkClicked(id) {
     Math.sin(dLat / 2) ** 2 +
     Math.cos(d2r(a.lat)) * Math.cos(d2r(b.lat)) * Math.sin(dLon / 2) ** 2;
   return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
-};
+}
 
 function updateAllPolylines() {
   links.forEach((l) => {
